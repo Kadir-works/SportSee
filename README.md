@@ -1,16 +1,66 @@
-# React + Vite
+# SportSee – Dashboard Analytics (P12 OpenClassrooms)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SportSee est une application de coaching sportif permettant de visualiser
+les données d’activité physique d’un utilisateur via un tableau de bord
+d’analytics interactif.
 
-Currently, two official plugins are available:
+Ce projet correspond au **Projet 12** du parcours
+**Développeur d’application JavaScript React** chez OpenClassrooms.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🛠 Technologies utilisées
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Front-end
+- React (avec Vite)
+- React Router DOM
+- Recharts
+- Axios
+- SCSS
 
-## Expanding the ESLint configuration
+### Back-end
+- Node.js (fourni par OpenClassrooms)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Prérequis
+
+- Node.js (version LTS recommandée)
+- npm ou yarn
+
+---
+
+## 🚀 Installation du Front-end
+
+```bash
+git clone https://github.com/Kadir-works/SportSee.git
+cd SportSee
+npm install
+npm run dev
+
+
+## 🚀 Installation du Front-end
+
+```bash
+git clone https://github.com/Kadir-works/SportSee.git
+cd SportSee
+npm install
+npm run dev
+
+L’application est accessible à l’adresse :
+
+http://localhost:5173
+
+🔌 Installation du Backend (API)
+
+Le backend est fourni par OpenClassrooms et doit être lancé séparément.
+
+git clone https://github.com/OpenClassrooms-Student-Center/SportSee.git
+cd SportSee
+npm install
+npm start
+
+
+Le backend est accessible à l’adresse :
+
+http://localhost:3000
