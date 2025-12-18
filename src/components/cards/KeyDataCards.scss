@@ -1,0 +1,35 @@
+.keydata {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.keydata__card {
+  display: flex;
+  align-items: center;
+  background: #fbfbfb;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.keydata__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  font-weight: bold;
+}
+
+.keydata__value {
+  font-weight: bold;
+  margin: 0;
+}
+
+.keydata__label {
+  margin: 0;
+  color: #74798c;
+  font-size: 14px;
+}

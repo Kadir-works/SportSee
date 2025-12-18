@@ -1,0 +1,31 @@
+@use "../../styles/variables.scss" as *;
+
+.sidebar {
+  width: 120px;
+  min-height: 100%;
+  background: $black;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-family: $font-main;
+
+  .icons {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 20px 0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .copyright {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 12px;
+  }
+}

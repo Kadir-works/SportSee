@@ -1,0 +1,13 @@
+@use "../../styles/variables.scss" as *;
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 80px); // 80px = hauteur du header
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
