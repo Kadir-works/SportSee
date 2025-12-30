@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 30px;
+  align-items: start;
 }
 
 .profile__charts {
@@ -14,4 +15,59 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+.profile__small-card {
+  width: 100%;
+  height: 263px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+}
+
+.profile__small-card > * {
+  width: 100%;
+  height: 100%;
+}
+
+.keydata {
+  align-self: start;
+}
+
+.profile-header {
+  margin: 40px 0;
+}
+
+.profile-header__title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  margin: 0;
+  color: #000;
+
+  span {
+    color: #ff0101;
+  }
+}
+
+.profile-header__subtitle {
+  margin: 16px 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+}
+
+.profile__activity-card {
+  width: 100%;
+  height: 320px;          
+  background: #fbfbfb;   
+  border-radius: 8px;
+  padding: 24px 32px;     
+  overflow: hidden;
+}
+
+.profile__activity-card > * {
+  width: 100%;
+  height: 100%;
 }

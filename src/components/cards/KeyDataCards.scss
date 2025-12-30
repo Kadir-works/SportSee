@@ -1,14 +1,16 @@
 .keydata {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  gap: 30px;
+  gap: 39px;
 }
 
 .keydata__card {
+  width: 258px;
+  height: 124px;
   display: flex;
   align-items: center;
   background: #fbfbfb;
-  padding: 20px;
+  padding: 24px;
   border-radius: 8px;
 }
 
@@ -20,16 +22,19 @@
   align-items: center;
   justify-content: center;
   margin-right: 16px;
-  font-weight: bold;
+
+
 }
 
 .keydata__value {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 20px;
   margin: 0;
 }
 
 .keydata__label {
-  margin: 0;
+  margin: 4px 0 0;
   color: #74798c;
   font-size: 14px;
+  font-weight: 500;
 }

@@ -8,7 +8,9 @@ export default function Layout({ children }) {
       <Header />
       <div className="layout">
         <Sidebar />
-        <main className="content">{children}</main>
+        <main className="content">
+          <div className="content__container">{children}</div>
+        </main>
       </div>
     </>
   );

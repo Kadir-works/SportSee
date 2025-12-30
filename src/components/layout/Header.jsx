@@ -1,9 +1,10 @@
 import "./Header.scss";
+import logo from "../../assets/logo/logo-sportsee.svg";
 
 export default function Header() {
   return (
     <header className="header">
-      <div className="logo">SportSee</div>
+      <div className="logo"><img src={logo} alt="SportSee logo" /></div>
       <nav className="nav">
         <a href="/">Accueil</a>
         <a href="#">Profil</a>
