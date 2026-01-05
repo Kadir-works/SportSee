@@ -80,4 +80,3 @@ export const formatAverageSessions = Models.formatAverageSessions;
 export const formatPerformance = Models.formatPerformance;
 
 export default Models;
-
