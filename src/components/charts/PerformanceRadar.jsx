@@ -6,26 +6,48 @@ import {
   Radar,
   ResponsiveContainer,
 } from "recharts";
+import "./PerformanceRadar.scss";
+
+/**
+ * Ordre des catégories tel que sur la maquette
+ * (le radar suit strictement l’ordre du tableau)
+ */
+const ORDER = [
+  "Intensité",
+  "Vitesse",
+  "Force",
+  "Endurance",
+  "Énergie",
+  "Cardio",
+];
 
 export default function PerformanceRadar({ data }) {
+  // On force l’ordre des données selon la maquette
+  const orderedData = ORDER.map(
+    (label) => data.find((item) => item.kind === label)
+  ).filter(Boolean); // sécurité si une valeur manque
+
   return (
-    <div
-      style={{
-        background: "#282d30",
-        color: "#fff",
-        padding: 20,
-        borderRadius: 8,
-      }}
-    >
-      <div style={{ width: "100%", height: 220 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadarChart data={data}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="kind" tick={{ fill: "#fff", fontSize: 12 }} />
-            <Radar dataKey="value" fill="#ff0101" fillOpacity={0.7} />
-          </RadarChart>
-        </ResponsiveContainer>
-      </div>
+    <div className="performanceRadar">
+      <ResponsiveContainer width="100%" height="100%" minHeight={100} minWidth={0}>
+        <RadarChart data={orderedData}>
+          {/* Grille du radar */}
+          <PolarGrid stroke="#ffffff" radialLines={false} />
+
+          {/* Labels autour du radar */}
+          <PolarAngleAxis
+            dataKey="kind"
+            tick={{ fill: "#ffffff", fontSize: 12 }}
+          />
+
+          {/* Zone rouge */}
+          <Radar
+            dataKey="value"
+            fill="#ff0101"
+            fillOpacity={0.7}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

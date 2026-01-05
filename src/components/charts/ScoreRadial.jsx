@@ -1,52 +1,49 @@
 import PropTypes from "prop-types";
-import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import "./ScoreRadial.scss";
 
 export default function ScoreRadial({ score }) {
-  const data = [{ name: "score", value: score * 100 }];
+  const percentage = Math.round(score * 100);
+
+  // Données pour PieChart : une portion rouge + le reste transparent
+  const data = [
+    { name: "score", value: percentage },
+    { name: "remainder", value: 100 - percentage }
+  ];
 
   return (
-    <div
-      style={{
-        background: "#fbfbfb",
-        padding: 20,
-        borderRadius: 8,
-        position: "relative",
-      }}
-    >
-      <p style={{ margin: 0, fontWeight: "bold" }}>Score</p>
+    <div className="scoreRadial">
+      <h2 className="scoreRadial__title">Score</h2>
 
-      <div style={{ width: "100%", height: 220 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadialBarChart
-            data={data}
-            innerRadius="70%"
-            outerRadius="80%"
-            startAngle={90}
-            endAngle={450}
-          >
-            <RadialBar dataKey="value" cornerRadius={10} fill="#ff0101" />
-          </RadialBarChart>
+      <div className="scoreRadial__chart">
+        <ResponsiveContainer width="100%" height="100%" minHeight={100} minWidth={0}>
+          <PieChart>
+            <Pie
+              data={data}
+              startAngle={90}
+              endAngle={90 + 360}
+              innerRadius="70%"
+              outerRadius="80%"
+              paddingAngle={0}
+              dataKey="value"
+            >
+              <Cell key="score" fill="#FF0101" cornerRadius="10px" />
+              <Cell key="remainder" fill="#FBFBFB" />
+            </Pie>
+          </PieChart>
         </ResponsiveContainer>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: "55%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center",
-        }}
-      >
-        <p style={{ margin: 0, fontSize: 22, fontWeight: "bold" }}>
-          {Math.round(score * 100)}%
+      <div className="scoreRadial__text">
+        <p className="scoreRadial__percent">{percentage}%</p>
+        <p className="scoreRadial__label">
+          de votre <br /> objectif
         </p>
-        <p style={{ margin: 0, color: "#74798C" }}>de votre objectif</p>
       </div>
     </div>
   );
 }
 
 ScoreRadial.propTypes = {
-  score: PropTypes.number.isRequired, // ex 0.12
+  score: PropTypes.number.isRequired,
 };

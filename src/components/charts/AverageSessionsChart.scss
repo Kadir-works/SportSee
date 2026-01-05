@@ -1,0 +1,36 @@
+.averageSessions {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ff0000;
+  border-radius: 10px;
+  padding: 20px 0 0;
+  box-sizing: border-box;
+  overflow: hidden; // ✅ empêche tout débordement
+}
+
+/* Titre */
+.averageSessions__title {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 20px 34px;
+  line-height: 1.4;
+}
+
+/* 🔥 Zone dédiée AU CHART */
+.averageSessions__chart {
+  width: 100%;
+  height: calc(100% - 60px); // titre + marges
+  min-height: 140px; // évite hauteur nulle lors du rendu
+}
+
+/* Tooltip */
+.averageSessions__tooltip {
+  background: #ffffff;
+  color: #000000;
+  font-size: 8px;
+  font-weight: 500;
+  padding: 6px 8px;
+}

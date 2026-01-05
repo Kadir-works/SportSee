@@ -1,0 +1,53 @@
+.scoreRadial {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fbfbfb;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Titre */
+.scoreRadial__title {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #20253a;
+}
+
+/* Zone du graphique */
+.scoreRadial__chart {
+  width: 100%;
+  height: 200px;
+  min-height: 160px;
+}
+
+/* Texte centré dans le cercle */
+.scoreRadial__text {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Pourcentage */
+.scoreRadial__percent {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #282d30;
+}
+
+/* Texte secondaire */
+.scoreRadial__label {
+  margin: 4px 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798c;
+  line-height: 1.4;
+}

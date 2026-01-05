@@ -1,14 +1,12 @@
 .activityChart {
   width: 100%;
   height: 100%;
-  position: relative;
 }
 
-.activityChart__top {
+.activityChart__header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  align-items: center;
 }
 
 .activityChart__title {
@@ -19,80 +17,65 @@
   color: #20253a;
 }
 
-.activityChart__container {
-  width: 100%;
-  height: calc(100% - 60px);
+.activityChart__legend {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798c;
 }
 
-// ✅ Tooltip rouge personnalisé
+.activityChart__legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.activityChart__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.activityChart__dot--black {
+  background: #282d30;
+}
+
+.activityChart__dot--red {
+  background: #e60000;
+}
+
+.activityChart__container {
+  width: 100%;
+  height: calc(100% - 40px);
+  min-height: 180px; // assure une hauteur minimale pour ResponsiveContainer
+  margin-top: 16px;
+}
+
 .activityChart__tooltip {
   background: #e60000;
   color: #fff;
-  padding: 8px 7px;
+  padding: 8px 10px;
   font-size: 10px;
   font-weight: 500;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-width: 46px;
+  gap: 12px;
   align-items: center;
-  border: none;
-  box-shadow: none;
 
   p {
     margin: 0;
-    line-height: 1;
   }
 }
 
-// ✅ Légende
-.recharts-legend-wrapper {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
-  top: 0 !important;
-}
-
-.recharts-legend-item {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.recharts-legend-item:first-child {
-  margin-right: 32px !important;
-}
-
-.recharts-legend-item-text {
-  color: #000 !important;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-// ✅ Axes
 .recharts-cartesian-axis-tick-value {
   fill: #9b9eac;
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
 }
 
-// ✅ Grille
 .recharts-cartesian-grid-horizontal line {
   stroke: #dedede;
-}
-
-.recharts-cartesian-grid-horizontal {
-  stroke-dasharray: 3 3;
-}
-
-// ✅ Fond gris au survol
-.recharts-reference-area {
-  opacity: 1;
-  z-index: 0;
-  pointer-events: none;
-}
-
-// ✅ Supprimer bordure par défaut du tooltip
-.recharts-tooltip-wrapper {
-  outline: none;
 }

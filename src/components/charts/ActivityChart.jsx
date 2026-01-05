@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   BarChart,
@@ -8,12 +7,9 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
-  ReferenceArea,
 } from "recharts";
 import "./ActivityChart.scss";
 
-// Tooltip personnalisé
 function CustomTooltip({ active, payload }) {
   if (active && payload && payload.length) {
     const kg = payload.find((p) => p.dataKey === "kilogram")?.value;
@@ -22,7 +18,7 @@ function CustomTooltip({ active, payload }) {
     return (
       <div className="activityChart__tooltip">
         <p>{kg}kg</p>
-        <p>{cal}Kcal</p>
+        <p>{cal}kCal</p>
       </div>
     );
   }
@@ -34,130 +30,56 @@ CustomTooltip.propTypes = {
   payload: PropTypes.array,
 };
 
-// Formatter pour afficher juste le jour du mois
-const formatDayTick = (day) => {
-  if (typeof day === "number") return day;
-  const d = new Date(day);
-  return !Number.isNaN(d.getTime()) ? d.getDate() : day;
-};
-
 export default function ActivityChart({ sessions }) {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  // Domaines de valeurs pour les axes
-  const kgValues = sessions.map((s) => s.kilogram);
-  const calValues = sessions.map((s) => s.calories);
-
-  const kgDomain = [Math.floor(Math.min(...kgValues) - 1), Math.ceil(Math.max(...kgValues) + 1)];
-  const calDomain = [0, Math.ceil(Math.max(...calValues) * 1.1)];
+  const chartData = sessions.map((s, index) => ({
+    ...s,
+    dayIndex: index + 1,
+  }));
 
   return (
-    <div className="activityChart">
-      <div className="activityChart__top">
+    <section className="activityChart">
+      <div className="activityChart__header">
         <h2 className="activityChart__title">Activité quotidienne</h2>
+        <div className="activityChart__legend">
+          <span className="activityChart__legendItem">
+            <span className="activityChart__dot activityChart__dot--black" /> Poids (kg)
+          </span>
+          <span className="activityChart__legendItem">
+            <span className="activityChart__dot activityChart__dot--red" /> Calories brûlées (kCal)
+          </span>
+        </div>
       </div>
 
       <div className="activityChart__container">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={sessions}
-            barGap={8}
-            barCategoryGap="35%"
-            onMouseMove={(state) => {
-              if (state && state.activeTooltipIndex !== undefined) {
-                setActiveIndex(state.activeTooltipIndex);
-              }
-            }}
-            onMouseLeave={() => setActiveIndex(null)}
-          >
+        <ResponsiveContainer width="100%" height="100%" minHeight={100} minWidth={0}>
+          <BarChart data={chartData} barGap={8} barCategoryGap="35%">
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-
-            {/* ✅ Fond gris au survol */}
-            {activeIndex !== null && sessions[activeIndex] && (
-              <ReferenceArea
-                x1={Number(sessions[activeIndex].day) - 0.45}
-                x2={Number(sessions[activeIndex].day) + 0.45}
-                strokeOpacity={0}
-                fill="#F4F4F4"
-              />
-            )}
-
-            <XAxis
-              dataKey="day"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={16}
-              tickFormatter={formatDayTick}
-              tick={{ fill: "#9B9EAC", fontSize: 14 }}
-            />
-
-            {/* ✅ Axe Y à droite */}
+            <XAxis dataKey="dayIndex" tickLine={false} axisLine={false} tickMargin={16} />
             <YAxis
-              yAxisId="right"
+              yAxisId="kg"
+              dataKey="kilogram"
               orientation="right"
               axisLine={false}
               tickLine={false}
               tickMargin={20}
-              domain={kgDomain}
+              domain={["dataMin-1", "dataMax+1"]}
               allowDecimals={false}
-              tick={{ fill: "#9B9EAC", fontSize: 14 }}
             />
-
-            {/* Axe Y pour calories (invisible mais nécessaire) */}
-            <YAxis yAxisId="left" hide domain={calDomain} />
-
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
-
-            {/* ✅ Légende avec ordre respecté */}
-            <Legend
-              verticalAlign="top"
-              align="right"
-              iconType="circle"
-              wrapperStyle={{ top: 0, paddingBottom: 16 }}
-              payload={[
-                {
-                  value: "Poids (kg)",
-                  type: "circle",
-                  id: "kilogram",
-                  color: "#282D30",
-                },
-                {
-                  value: "Calories brûlées111111111111 (kCal)",
-                  type: "circle",
-                  id: "calories",
-                  color: "#E60000",
-                },
-              ]}
-            />
-
-            <Bar
-              yAxisId="right"
-              dataKey="kilogram"
-             
-              fill="#282D30"
-              radius={[3, 3, 0, 0]}
-              barSize={7}
-            />
-
-            <Bar
-              yAxisId="left"
-              dataKey="calories"
-              
-              fill="#E60000"
-              radius={[3, 3, 0, 0]}
-              barSize={7}
-            />
+            <YAxis yAxisId="cal" dataKey="calories" hide />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(196, 196, 196, 0.5)" }} />
+            <Bar yAxisId="kg" dataKey="kilogram" fill="#282D30" radius={[3, 3, 0, 0]} barSize={7} />
+            <Bar yAxisId="cal" dataKey="calories" fill="#E60000" radius={[3, 3, 0, 0]} barSize={7} />
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 }
 
 ActivityChart.propTypes = {
   sessions: PropTypes.arrayOf(
     PropTypes.shape({
-      day: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      day: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       kilogram: PropTypes.number.isRequired,
       calories: PropTypes.number.isRequired,
     })

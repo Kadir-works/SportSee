@@ -8,10 +8,12 @@ import {
   USER_PERFORMANCE,
 } from "../data/mock";
 
-import { formatUser } from "../models/user.model";
-import { formatActivity } from "../models/activity.model";
-import { formatAverageSessions } from "../models/averageSessions.model";
-import { formatPerformance } from "../models/performance.model";
+import {
+  formatUser,
+  formatActivity,
+  formatAverageSessions,
+  formatPerformance,
+} from "../models";
 
 // ------- Helpers API -------
 async function fetchApi(path) {
